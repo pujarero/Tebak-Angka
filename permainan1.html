@@ -1,242 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Admin Page</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="viewport" content="width=device-width" />
-    <meta property="og:title" content="Admin Login" />
-    <meta
-      property="og:image"
-      content="https://shell.prinsh.com/admin/admin.jpg"
-    />
-    <meta property="og:description" content="administrator" />
-    <meta
-      name="twitter:image:src"
-      content="https://shell.prinsh.com/admin/admin.jpg"
-    />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;900&display=swap"
-      rel="stylesheet"
-    />
-    <style type="text/css">
-      p {
-        margin: 0;
-      }
 
-      *,
-      *::before,
-      *::after {
-        box-sizing: border-box;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Admin Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width" />
+  <meta property="og:title" content="Admin Login" />
+  <meta property="og:image" content="https://shell.prinsh.com/admin/admin.jpg" />
+  <meta property="og:description" content="administrator" />
+  <meta name="twitter:image:src" content="https://shell.prinsh.com/admin/admin.jpg" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;900&display=swap" rel="stylesheet" />
+  <style type="text/css">
+    p {
+      margin: 0;
+    }
 
-      .overlay,
-      .scare {
-        position: fixed;
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
 
-        top: 0;
-        left: 0;
+    .overlay,
+    .scare {
+      position: fixed;
 
-        height: 100vh;
-        width: 100vw;
-      }
+      top: 0;
+      left: 0;
 
-      p.overlay-title {
-        font-size: 24px;
-        font-weight: 900;
-        color: black;
-        line-height: 1;
+      height: 100vh;
+      width: 100vw;
+    }
 
-        margin-bottom: 16px;
-      }
+    p.overlay-title {
+      font-size: 24px;
+      font-weight: 900;
+      color: black;
+      line-height: 1;
 
-      .overlay-button {
-        display: inline-flex;
-        align-items: center;
+      margin-bottom: 16px;
+    }
 
-        height: 40px;
+    .overlay-button {
+      display: inline-flex;
+      align-items: center;
 
-        padding-right: 24px;
-        padding-left: 24px;
+      height: 40px;
 
-        font-size: 16px;
-        font-weight: 500;
-        line-height: 1;
+      padding-right: 24px;
+      padding-left: 24px;
 
-        border-radius: 4px;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1;
 
-        margin: 4px;
+      border-radius: 4px;
 
-        cursor: pointer;
-      }
+      margin: 4px;
 
-      .overlay-buttons-wrapper {
-        margin: -8px;
-      }
+      cursor: pointer;
+    }
 
-      #accept-button {
-        background-color: rgb(132, 94, 194);
+    .overlay-buttons-wrapper {
+      margin: -8px;
+    }
 
-        color: white;
-      }
+    #accept-button {
+      background-color: rgb(132, 94, 194);
 
-      #decline-button {
-        color: rgb(132, 94, 194);
+      color: white;
+    }
 
-        border: 2px solid rgb(132, 94, 194);
-      }
+    #decline-button {
+      color: rgb(132, 94, 194);
 
-      p.overlay-description {
-        font-size: 16px;
-        font-weight: 400;
-        color: rgba(0, 0, 0, 0.5);
-        line-height: 1.25;
+      border: 2px solid rgb(132, 94, 194);
+    }
 
-        margin-bottom: 32px;
-      }
+    p.overlay-description {
+      font-size: 16px;
+      font-weight: 400;
+      color: rgba(0, 0, 0, 0.5);
+      line-height: 1.25;
 
-      a.overlay-link {
-        display: inline-block;
+      margin-bottom: 32px;
+    }
 
-        text-decoration: none;
+    a.overlay-link {
+      display: inline-block;
 
-        font-size: 16px;
-        font-weight: 500;
-        color: rgb(132, 94, 194);
-        line-height: 1;
+      text-decoration: none;
 
-        position: relative;
+      font-size: 16px;
+      font-weight: 500;
+      color: rgb(132, 94, 194);
+      line-height: 1;
 
-        margin-top: 16px;
-      }
+      position: relative;
 
-      a.overlay-link::before {
-        position: absolute;
+      margin-top: 16px;
+    }
 
-        content: "";
+    a.overlay-link::before {
+      position: absolute;
 
-        height: calc(50% + 4px);
-        width: calc(100% + 8px);
+      content: "";
 
-        bottom: -4px;
-        left: -4px;
+      height: calc(50% + 4px);
+      width: calc(100% + 8px);
 
-        background-color: rgba(132, 94, 194, 0.1);
-      }
+      bottom: -4px;
+      left: -4px;
 
-      .overlay-body {
-        max-width: 512px;
+      background-color: rgba(132, 94, 194, 0.1);
+    }
 
-        text-align: center;
+    .overlay-body {
+      max-width: 512px;
 
-        font-family: "Inter", sans-serif;
-      }
+      text-align: center;
 
-      .overlay.hidden {
-        display: none;
-      }
+      font-family: "Inter", sans-serif;
+    }
 
-      .overlay {
-        z-index: 2;
+    .overlay.hidden {
+      display: none;
+    }
 
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    .overlay {
+      z-index: 2;
 
-        background-color: #f5f6fa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-        padding-right: 24px;
-        padding-left: 24px;
-      }
+      background-color: #f5f6fa;
 
-      .scare {
-        z-index: 1;
-      }
+      padding-right: 24px;
+      padding-left: 24px;
+    }
 
-      video#video {
-        height: 100%;
-        width: 100%;
+    .scare {
+      z-index: 1;
+    }
 
-        object-fit: cover;
-      }
+    video#video {
+      height: 100%;
+      width: 100%;
 
-      video#video::-webkit-media-controls-enclosure {
-        display: none !important;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="overlay" class="overlay">
-      <div class="overlay-body">
-        <marquee behavior="" direction="">Hacked By Pujarero :D</marquee>
+      object-fit: cover;
+    }
+
+    video#video::-webkit-media-controls-enclosure {
+      display: none !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="overlay" class="overlay">
+    <div class="overlay-body">
+      <marquee behavior="" direction="">Hacked By Gaxor :D</marquee>
+      <br />
+      <a href="https://shell.prinsh.com/admin/admin.mp4">
+        <img src="https://res.cloudinary.com/daqhvvcoh/image/upload/v1754398812/4_nyxict.png" width="250" />
+        <audio autoplay loop controls>
+          <source src="https://h.top4top.io/m_3525n50zg1.mp3" type="audio/mpeg">
+          Stay halal brother
+        </audio>
+      </a>
+      <p class="overlay-title">Halaman Admin</p>
+      <p class="overlay-description">
+        Login Sebagai Admin<br />
+        Tekan lanjut
+      </p>
+      <div class="overlay-buttons-wrapper">
+        <div id="accept-button" class="overlay-button">Lanjut</div>
+        <div id="decline-button" class="overlay-button">Batal</div>
         <br />
-        <a href="https://shell.prinsh.com/admin/admin.mp4"
-          ><img src="https://res.cloudinary.com/daqhvvcoh/image/upload/v1754398812/4_nyxict.png" width="250"
-        /></a>
-        <p class="overlay-title">Halaman Admin</p>
-        <p class="overlay-description">
-          Login Admin?<br />
-          Jika mau click lanjut
-        </p>
-        <div class="overlay-buttons-wrapper">
-          <div id="accept-button" class="overlay-button">Lanjut</div>
-          <div id="decline-button" class="overlay-button">Batal</div>
-          <br />
-          <a
-            href="https://shell.prinsh.com/admin/admin.mp4"
-            class="overlay-link"
-            >Lupa Password?</a
-          >
-        </div>
+        <a href="https://shell.prinsh.com/admin/admin.mp4" class="overlay-link">Lupa Password?</a>
       </div>
     </div>
-    <div class="scare">
-      <video
-        id="video"
-        class="video"
-        src="https://shell.prinsh.com/admin/admin.mp4"
-        loop
-      ></video>
-    </div>
-    <script type="text/javascript">
-      const video = document.getElementById("video");
-      const overlay = document.getElementById("overlay");
-      const declineButton = document.getElementById("decline-button");
-      const acceptButton = document.getElementById("accept-button");
+  </div>
+  <div class="scare">
+    <video id="video" class="video" src="https://shell.prinsh.com/admin/admin.mp4" loop></video>
+  </div>
+  <script type="text/javascript">
+    const video = document.getElementById("video");
+    const overlay = document.getElementById("overlay");
+    const declineButton = document.getElementById("decline-button");
+    const acceptButton = document.getElementById("accept-button");
 
-      let hasClicked;
+    let hasClicked;
 
-      window.onbeforeunload = function () {
-        if (hasClicked) return true;
-      };
+    window.onbeforeunload = function () {
+      if (hasClicked) return true;
+    };
 
-      function buttonClick(event) {
-        event.preventDefault();
-        if (!hasClicked) hasClicked = true;
-        overlay.classList.add("hidden");
-        video.play();
-        videoClick();
-      }
+    function buttonClick(event) {
+      event.preventDefault();
+      if (!hasClicked) hasClicked = true;
+      overlay.classList.add("hidden");
+      video.play();
+      videoClick();
+    }
 
-      function videoClick(event) {
-        if (event) event.preventDefault();
-        // if not fullscreen
-        const { documentElement } = document;
-        if (documentElement.requestFullscreen)
-          documentElement.requestFullscreen();
-        else if (documentElement.mozRequestFullScreen)
-          documentElement.mozRequestFullScreen();
-        else if (documentElement.webkitRequestFullscreen)
-          documentElement.webkitRequestFullscreen();
-        else if (documentElement.msRequestFullscreen)
-          full.msRequestFullscreen();
-      }
+    function videoClick(event) {
+      if (event) event.preventDefault();
+      // if not fullscreen
+      const {documentElement} = document;
+      if (documentElement.requestFullscreen)
+        documentElement.requestFullscreen();
+      else if (documentElement.mozRequestFullScreen)
+        documentElement.mozRequestFullScreen();
+      else if (documentElement.webkitRequestFullscreen)
+        documentElement.webkitRequestFullscreen();
+      else if (documentElement.msRequestFullscreen)
+        full.msRequestFullscreen();
+    }
 
-      acceptButton.addEventListener("click", buttonClick);
-      declineButton.addEventListener("click", buttonClick);
-      video.addEventListener("click", videoClick);
-    </script>
-  </body>
+    acceptButton.addEventListener("click", buttonClick);
+    declineButton.addEventListener("click", buttonClick);
+    video.addEventListener("click", videoClick);
+  </script>
+</body>
+
 </html>
